@@ -8,17 +8,18 @@
 
 Highcharts.setOptions({
     lang: {
-      thousandsSep: ','
+      thousandsSep: ',',
+      numericSymbols: [',000']
     }
 });
 
-let chartId = document.getElementById("chart-container");
+let chartIdNasdaq10 = document.getElementById("chart-container-nasdaq-10yr");
 
 // checks for the chart ID and displays a backup image if the browser can't find it
 setTimeout(function() {
-    if(chartId.innerHTML === "") {
+    if(chartIdNasdaq10.innerHTML === "") {
         // console.log('noId');
-        let chartArea = document.getElementsByClassName("chart-area");
+        let chartArea = document.getElementsByClassName("chart-area-nasdaq-10yr");
         for(var i = 0; i < chartArea.length; i++) {
             chartArea[i].style.display = "none";
         } 
@@ -30,20 +31,20 @@ setTimeout(function() {
 },500);
 
 function drawHighcharts() {
-    Highcharts.chart(chartId, {
+    Highcharts.chart(chartIdNasdaq10, {
         chart: {
-            type: 'bar',
+            type: 'line',
             styledMode: true,
             spacingBottom: 25,
             spacingRight: 100,
-            spacingLeft: 0,
+            spacingLeft: 10,
             spacingTop: 20
         }, 
         title: {
             text: null
         },
         data: {
-            googleSpreadsheetKey: '1YOKb5l2VM4aAB2r20N_1aT_1vEajYrP3U-U3A6lZbC0'
+            googleSpreadsheetKey: '1c4lcf9BLmMw6q8JsWl4eqzMa_NJsS5oLG0lfiT342k0'
         },
         // for bar charts only
         plotOptions: {
@@ -69,11 +70,7 @@ function drawHighcharts() {
         //     }
         // },
         legend: {
-            align: 'right',
-            symbolRadius: 0,
-            verticalAlign: 'top',
-            x: 10,
-            itemMarginTop: -10
+            enabled: false
         },
         xAxis: {
             labels: {
